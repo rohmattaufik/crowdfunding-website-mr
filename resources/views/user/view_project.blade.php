@@ -122,30 +122,32 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">DONASI {{$project->title}}</h4>
+                <h4 class="modal-title" id="myModalLabel" style="color:orange;">DONASI {{$project->title}}</h4>
             </div>
             <div class="modal-body">
                 Terima kasih telah bersedia untuk berdonasi pada proyek <strong>{{$project->title}}</strong><br>
                 Isikan data berikut, kemudian lakukan pembayaran dan konfirmasi<br>
-                <form method="post" action="">
+                <form method="post" action="{{url('donasi')}}">
                     {{ csrf_field()}}
+
+                    <input type="hidden" name="project_id" value="{{$project->id}}">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="email" class="form-control" name="email" id="email">
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama">
+                        <input type="text" class="form-control" name="nama" id="nama">
                     </div>
                     <div class="checkbox">
                         <label>
-                        <input type="checkbox"> Donasi sebagai "Hamba Allah" ?
+                        <input type="checkbox" value="1" name="anonim"> Donasi sebagai "Hamba Allah" ?
                         </label>
                     </div>
                     <label>Jumlah Donasi</label>
                     <div class="input-group"> 
                         <span class="input-group-addon">Rp</span>
-                        <input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+                        <input type="number" name="jumlah" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>

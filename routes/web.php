@@ -147,6 +147,14 @@ Route::post('/project', 'ProjectController@get_project_by_program');
 
 Route::get('/view_project/{id}', 'ProjectController@user_view_project');
 
+Route::post('/donasi','ProjectController@donasi');
+
+Route::get('konfirmasi', function(){
+    return view('user.konfirmasi');
+});
+
+
+
 Route::get('/user', function(){
     return view('user.beranda');
 });

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\Program;
 use Carbon\Carbon;
+use App\Donation;
+use App\UserMessage;
 
 class ProjectController extends Controller
 {
@@ -19,7 +21,8 @@ class ProjectController extends Controller
         foreach($projects as $project){
             $project['program'] = Program::find($project->program_id);
         }
-        return view('admin.project.viewall')->with('projects',$projects);
+        $messages = UserMessage::where('is_read',0)->get();
+        return view('admin.project.viewall')->with('projects',$projects)->with('messages',$messages);
     }
 
     public function view_project($project_id){
@@ -28,12 +31,14 @@ class ProjectController extends Controller
             return redirect()->back();
         }
         $project['program'] = Program::find($project->program_id);
-        return view('admin.project.view')->with('project',$project);
+        $messages = UserMessage::where('is_read',0)->get();
+        return view('admin.project.view')->with('project',$project)->with('messages',$messages);
     }
 
     public function create_project(){
         $programs = Program::all();
-        return view('admin.project.create')->with('programs',$programs);
+        $messages = UserMessage::where('is_read',0)->get();
+        return view('admin.project.create')->with('programs',$programs)->with('messages',$messages);
     }
 
     public function create_project_submit(Request $request){
@@ -74,7 +79,8 @@ class ProjectController extends Controller
         }
         $project['program'] = Program::find($project->program_id);
         $programs = Program::all();
-        return view('admin.project.edit')->with('project',$project)->with('programs',$programs);
+        $messages = UserMessage::where('is_read',0)->get();
+        return view('admin.project.edit')->with('project',$project)->with('programs',$programs)->with('messages',$messages);
     }
 
     public function edit_project_submit(Request $request){
@@ -138,6 +144,31 @@ class ProjectController extends Controller
             return redirect()->back();
         }
         return view('user.view_project')->with('project',$project);
+    }
+
+    public function donasi (Request $request) {
+        $project_id = $request->project_id;
+        $email = $request->email;
+        $nama = $request->nama;
+        $anonim = $request->anonim;
+        $jumlah = $request->jumlah;
+        if($project_id == null or $email == null or $jumlah == null){
+            return redirect()->back();
+        }
+        $donasi = new Donation;
+        $donasi->id_project = $project_id;
+        $donasi->email = $email;
+        $donasi->nama = $nama;
+        if($anonim == null){
+            $donasi->is_anonim = 0;
+        } else {
+            $donasi->is_anonim = 1;
+        }
+        $donasi->jumlah = $jumlah;
+        $donasi->is_confirmation = 0;
+        $donasi->save();
+        
+        return redirect()->back();
     }
 
 }
