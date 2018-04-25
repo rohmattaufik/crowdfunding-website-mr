@@ -19,74 +19,30 @@
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <span class="label label-success">{{count($messages)}}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">You have {{count($messages)}} messages</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
+                  @if(count($messages) > 0)
+                  @foreach($messages as $message)
                   <li><!-- start message -->
                     <a href="#">
-                      <div class="pull-left">
+                      <!-- <div class="pull-left">
                         <img src="{{URL::asset('AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-                      </div>
+                      </div> -->
                       <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        {{$message->first_name}} {{$message->last_name}}
+                        <small><i class="fa fa-clock-o"></i>{{$message->created_at}}</small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>{{substr($message->pesan,0)}}</p>
                     </a>
                   </li>
                   <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="{{URL::asset('AdminLTE/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="{{URL::asset('AdminLTE/dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="{{URL::asset('AdminLTE/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="{{URL::asset('AdminLTE/dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                  @endforeach
+                  @endif
                 </ul>
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>

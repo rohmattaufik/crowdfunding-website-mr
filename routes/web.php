@@ -119,9 +119,7 @@ Route::get('admin/project/edit/{id}','ProjectController@edit_project');
 Route::post('admin/edit-project/submit','ProjectController@edit_project_submit');
 
 
-Route::get('admin', function(){
-    return view('admin.layout.layout');
-});
+Route::get('admin', 'SystemController@admin');
 
 
 
@@ -141,7 +139,13 @@ Route::get('/kontak', function(){
     return view('user.kontak');
 });
 
+Route::post('/message/submit','UserMessageController@add_message');
 
+Route::get('/project', 'ProjectController@get_project');
+
+Route::post('/project', 'ProjectController@get_project_by_program');
+
+Route::get('/view_project/{id}', 'ProjectController@user_view_project');
 
 Route::get('/user', function(){
     return view('user.beranda');
@@ -154,8 +158,6 @@ Route::get('/usulan', function(){
 
 
 
-Route::get('/project', function(){
-    return view('user.project');
-});
+
 
 

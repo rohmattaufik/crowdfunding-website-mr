@@ -136,18 +136,18 @@
                                                 <div class="separator"></div>
                                             </div>
                                             <div class="single_contant_left">
-                                                <form action="#" id="formid">
+                                                <form method="post" action="{{url('message/submit')}}" id="formid">
                                                     <!--<div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">-->
-    
+                                                    {{ csrf_field() }}
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" name="name" placeholder="First Name" required="">
+                                                                <input type="text" class="form-control" name="first_name" placeholder="First Name" required="">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" name="name" placeholder="Last Name" required="">
+                                                                <input type="text" class="form-control" name="last_name" placeholder="Last Name" required="">
                                                             </div>
                                                         </div>
                                                     </div>

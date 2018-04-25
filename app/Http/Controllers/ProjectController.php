@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Program;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -108,4 +109,35 @@ class ProjectController extends Controller
 
         return redirect('admin/project/'.$project_id);
     }
+
+
+    // ---------------------------------------
+    // USER AREA
+    // ---------------------------------------
+
+    public function get_project(){
+        $programs = Program::where('flag_active',1)->get();
+        $projects = Project::where('is_publish', 1)->where('is_close',0)->where('date_close', '>=', Carbon::now())->where('program_id',$programs[0]->id)->get();
+        $id_program = $programs[0]->id;
+        return view('user.project')->with('programs',$programs)->with('projects',$projects)->with('id_program', $id_program);
+    }
+
+    public function get_project_by_program(Request $request){
+        $id_program = $request->id_program;
+        if($id_program == null){
+            return redirect()->back();
+        }
+        $programs = Program::where('flag_active',1)->get();
+        $projects = Project::where('is_publish', 1)->where('is_close',0)->where('date_close', '>=', Carbon::now())->where('program_id',$id_program)->get();
+        return view('user.project')->with('programs',$programs)->with('projects',$projects)->with('id_program', $id_program);
+    }
+
+    public function user_view_project ($project_id){
+        $project = Project::find($project_id); 
+        if($project == null or $project->is_publish == 0){
+            return redirect()->back();
+        }
+        return view('user.view_project')->with('project',$project);
+    }
+
 }

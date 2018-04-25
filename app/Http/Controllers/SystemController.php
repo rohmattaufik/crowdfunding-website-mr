@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SystemAbout;
+use App\UserMessage;
 
 class SystemController extends Controller
 {
@@ -67,6 +68,11 @@ class SystemController extends Controller
         $system->flag_active = 0;
         $system->save();
         return redirect('admin/system_about');
+    }
+
+    public function admin(){
+        $messages = UserMessage::where('is_read',0)->get();
+        return view('admin.layout.layout')->with('messages',$messages);
     }
 
     // --------------------------------------

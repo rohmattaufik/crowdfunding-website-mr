@@ -69,16 +69,19 @@
                                                     <div class="separator"></div>
                                                 </div>
                                                 <div class="col-sm-12">
-                                                <form class="form-horizontal" role="form">
+                                                <form class="form-horizontal" role="form" method="post" action="{{url('project')}}">
                                                     <div class="form-group">
                                                         <label for="inputPassword" class="col-sm-2 control-label"><h4 class="pull-left">Pilih Program</h4></label>
                                                         <div class="col-sm-10">
-                                                            <select class="form-control">
-                                                                <option>Air Buat Sedulur</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
+                                                            {{ csrf_field() }}
+                                                            <select class="form-control" name="id_program">
+                                                                @foreach($programs as $program)
+                                                                @if(count($projects) >0 and $program->id == $id_program)
+                                                                <option value="{{$program->id}}" selected="true">{{$program->name}}</option>
+                                                                @else
+                                                                <option value="{{$program->id}}">{{$program->name}}</option>
+                                                                @endif
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                         <div class="col-sm-2 col-sm-offset-10">
@@ -93,72 +96,42 @@
                                                     <hr>
                                                 </div>
                                                 <div class="col-sm-12">
+                                                @if(count($projects) >0 )
+                                                @foreach($projects as $project)
                                                 <div class="col-sm-4">
-                                                    
-                                                    
                                                     <div class="thumbnail">
-                                                    <img src="assets/images/featureslid1.jpg" alt="...">
-                                                    <div class="caption">
-                                                        <h3>Thumbnail label</h3>
-                                                        <div class="col-sm-12 col-md-12">
-                                                            <div class="col-sm-6">
+                                                        <img src="{{URL::asset($project->image)}}" alt="...">
+                                                        <div class="caption">
+                                                            <h3>{{$project->title}}</h3>
+                                                            <div class="col-sm-12 col-md-12">
+                                                                <div class="col-sm-6">
                                                                     <p>Target dana : </p>
-                                                            </div>
+                                                                </div>
                                                             <div class="col-sm-6 pull-right">
-                                                                    <p>Rp 1000.000,-</p>
-
+                                                                <p>Rp {{ number_format($project->target_dana,2,',','.')}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-12 col-md-12 pull-right" style="border-bottom: 1px solid grey;">
-                                                                <div class="col-sm-6">
-                                                                        <p>Dibuka hingga : </p>
-                                                                </div>
-                                                                <div class="col-sm-6 pull-right">
-                                                                        <p>14 Februari 2018</p>
-                                                                </div>
+                                                            <div class="col-sm-6">
+                                                                    <p>Dibuka hingga : </p>
+                                                            </div>
+                                                            <div class="col-sm-6 pull-right">
+                                                                    <p>{{$project->date_close}}</p>
+                                                            </div>
                                                         </div>
-                                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                        <div class="skillbar" data-percent="79%">
-                                                            <div class="skillbar-title"><p class="blue"><strong>Progress</strong></p><span class="sm-text">79%</span></div>
+                                                        <p>{!! html_entity_decode(substr($project->deskripsi, 0, 500)) !!}</p>
+                                                        <div class="skillbar" data-percent="{{($project->dana_terkumpul/$project->target_dana)*100}}%">
+                                                            <div class="skillbar-title"><p class="blue"><strong>Progress</strong></p><span class="sm-text">{{ number_format((float)$project->dana_terkumpul/$project->target_dana*100 , 2, '.', '') }} %</span></div>
                                                             <div class="skillbar-bar blue"></div>
                                                         </div>
-                                                        <p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                                        <p><a href="{{url('view_project/'.$project->id)}}" class="btn btn-default" role="button">Lihat Project</a></p>
                                                     </div>
                                                     </div>
+                                                @endforeach
+                                                @else
+                                                Belum ada project
+                                                @endif
                                                 </div>
-                                            <div class="col-sm-4">
-                                                    <div class="thumbnail">
-                                                    <img src="assets/images/featureslid1.jpg" alt="...">
-                                                    <div class="caption">
-                                                        <h3>Thumbnail label</h3>
-                                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                        <p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            <div class="col-sm-4">
-                                                    <div class="thumbnail">
-                                                    <img src="assets/images/featureslid1.jpg" alt="...">
-                                                    <div class="caption">
-                                                        <h3>Thumbnail label</h3>
-                                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                        <p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                <div class="col-sm-4">
-                                                        <div class="thumbnail">
-                                                        <img src="assets/images/featureslid1.jpg" alt="...">
-                                                        <div class="caption">
-                                                            <h3>Thumbnail label</h3>
-                                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                            <p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
 
