@@ -30,14 +30,14 @@
                                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                             <ul class="nav navbar-nav navbar-right">
-                                                <li><a href="">BERANDA</a></li>
-                                                <li><a href="">TENTANG</a></li>
+                                                <li><a href="{{url('/')}}">BERANDA</a></li>
+                                                <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
                                                 <li><a href="#home">PROGRAM</a></li>
-                                                <li><a href="">PROJECT</a></li>
+                                                <li><a href="{{url('project')}}">PROJECT</a></li>
                                                 <li><a href="">RUANG RELAWAN</a></li>
-                                                <li><a href="">DAFTAR RELAWAN</a></li>
-												<li><a href="">USULKAN PENERIMA MANFAAT</a></li>
-                                                <li><a href="">KONTAK</a></li>
+                                                <li><a href="{{url('daftar_relawan')}}">DAFTAR RELAWAN</a></li>
+												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
+                                                <li><a href="{{url('kontak')}}">KONTAK</a></li>
                                             </ul>
 
 
@@ -98,6 +98,7 @@
                                                         </div>
 
                                                         <div class="col-sm-6">
+                                                            @if(count($program['documentation'])>1)
                                                             <div class="single_features_slide">
                                                                 @foreach($program['documentation'] as $documentation)
                                                                 <div class="single_ft_s_item">
@@ -105,6 +106,13 @@
                                                                 </div>
                                                                 @endforeach
                                                             </div>
+                                                            @else
+                                                            @foreach($program['documentation'] as $documentation)
+                                                                <div class="single_ft_s_item">
+                                                                    <img src="{{URL::asset($documentation->dokumentation_url)}}" alt="" />
+                                                                </div>
+                                                                @endforeach
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -126,6 +134,7 @@
                                                         </div>
 
                                                         <div class="col-sm-6">
+                                                            @if(count($program['documentation'])>1)
                                                             <div class="single_features_slide">
                                                                 @foreach($program['documentation'] as $documentation)
                                                                 <div class="single_ft_s_item">
@@ -133,6 +142,13 @@
                                                                 </div>
                                                                 @endforeach
                                                             </div>
+                                                            @else
+                                                            @foreach($program['documentation'] as $documentation)
+                                                                <div class="single_ft_s_item">
+                                                                    <img src="{{URL::asset($documentation->dokumentation_url)}}" alt="" />
+                                                                </div>
+                                                                @endforeach
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

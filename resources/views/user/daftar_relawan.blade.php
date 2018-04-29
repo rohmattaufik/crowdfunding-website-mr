@@ -29,14 +29,14 @@
                                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                             <ul class="nav navbar-nav navbar-right">
-                                                <li><a href="index.html">BERANDA</a></li>
-                                                <li><a href="">TENTANG</a></li>
-                                                <li><a href="">PROGRAM</a></li>
-                                                <li><a href="">PROJECT</a></li>
+                                                <li><a href="{{url('/')}}">BERANDA</a></li>
+                                                <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
+                                                <li><a href="{{url('program')}}">PROGRAM</a></li>
+                                                <li><a href="{{url('project')}}">PROJECT</a></li>
                                                 <li><a href="">RUANG RELAWAN</a></li>
                                                 <li><a href="#home">DAFTAR RELAWAN</a></li>
-												<li><a href="">USULKAN PENERIMA MANFAAT</a></li>
-                                                <li><a href="">KONTAK</a></li>
+												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
+                                                <li><a href="{{url('kontak')}}">KONTAK</a></li>
                                             </ul>
 
 

@@ -29,14 +29,14 @@
                                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                             <ul class="nav navbar-nav navbar-right">
-                                                <li><a href="">BERANDA</a></li>
-                                                <li><a href="">TENTANG</a></li>
-                                                <li><a href="">PROGRAM</a></li>
+                                                <li><a href="{{url('/')}}">BERANDA</a></li>
+                                                <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
+                                                <li><a href="{{url('program')}}">PROGRAM</a></li>
                                                 <li><a href="#home">PROJECT</a></li>
                                                 <li><a href="">RUANG RELAWAN</a></li>
-                                                <li><a href="">DAFTAR RELAWAN</a></li>
-												<li><a href="">USULKAN PENERIMA MANFAAT</a></li>
-                                                <li><a href="">KONTAK</a></li>
+                                                <li><a href="{{url('daftar_relawan')}}">DAFTAR RELAWAN</a></li>
+												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
+                                                <li><a href="{{url('kontak')}}">KONTAK</a></li>
                                             </ul>
 
 
@@ -83,6 +83,12 @@
                                                     </div>
                                                     <div class="col-sm-6 pull-right">
                                                         <p>Rp {{ number_format($project->target_dana,2,',','.')}}</p>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <p>Dana Terkumpul : </p>
+                                                    </div>
+                                                    <div class="col-sm-6 pull-right">
+                                                        <p>Rp {{ number_format($project->dana_terkumpul,2,',','.')}}</p>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <p>Dibuka Hingga : </p>

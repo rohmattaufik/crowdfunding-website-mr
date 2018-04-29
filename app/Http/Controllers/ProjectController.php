@@ -171,4 +171,75 @@ class ProjectController extends Controller
         return redirect()->back();
     }
 
+    public function konfirmasi( $id_donasi ){
+        if($id_donasi == null){
+            $projects = Project::where('is_publish', 1)->get();    
+            return view('user.konfirmasi')->with('projects',$projects)->with('donasi',null);
+        }
+        $donasi = Donation::find($id_donasi);
+        if($donasi == null){
+            $projects = Project::where('is_publish', 1)->get();
+            return view('user.konfirmasi')->with('projects',$projects)->with('donasi',null);
+        }
+        $project = Project::where('id',$donasi->id_project)->first();
+        if($project == null){
+            return redirect()->back();
+        }
+        return view('user.konfirmasi')->with('project',$project)->with('donasi',$donasi);
+
+    }
+
+    public function konfirmasi_null(){
+        return redirect('/konfirmasi/0');
+    }
+
+    public function konfirmasi_submit(Request $request){
+        $id_donasi = $request->id_donasi;
+        $id_project = $request->id_project;
+        $email = $request->email;
+        $jumlah = $request->jumlah;
+        $nama = $request->nama;
+        $bank_asal = $request->bank_asal;
+        $bank_tujuan = $request->bank_tujuan;
+        $nama_rekening = $request->nama_rekening;
+        $tanggal = $request->tanggal;
+        
+        if($id_donasi == null){
+            $donasi = Donation::where('id_project',$id_project)->where('email',$email)->where('jumlah',$jumlah)->where('is_confirmation',0)->get();
+            if($donasi == null or count($donasi)>1){
+                return redirect()->back();
+            }
+            $donasi = $donasi[0];
+            $donasi->bank_asal = $bank_asal;
+            $donasi->bank_tujuan = $bank_tujuan;
+            $donasi->nama_rekening = $nama_rekening;
+            $donasi->jumlah = $jumlah;
+            $donasi->tanggal_transfer = $tanggal;
+            $donasi->is_confirmation = 1;
+            $donasi->save();
+
+            $project = Project::find($id_project);
+            $project->dana_terkumpul += $jumlah;
+            $project->save();
+            return redirect('/view_project/'.$donasi->id_project);
+        }else{
+            $donasi = Donation::find($id_donasi);
+            if($donasi == null or $donasi->is_confirmation == 1){
+                return redirect()->back();
+            }
+            $donasi->bank_asal = $bank_asal;
+            $donasi->bank_tujuan = $bank_tujuan;
+            $donasi->nama_rekening = $nama_rekening;
+            $donasi->jumlah = $jumlah;
+            $donasi->tanggal_transfer = $tanggal;
+            $donasi->is_confirmation = 1;
+            $donasi->save();
+
+            $project = Project::find($id_project);
+            $project->dana_terkumpul += $jumlah;
+            $project->save();
+            return redirect('/view_project/'.$donasi->id_project);
+        }
+    }
+
 }

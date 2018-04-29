@@ -30,14 +30,14 @@
                                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                             <ul class="nav navbar-nav navbar-right">
-                                                <li><a href="index.html">BERANDA</a></li>
-                                                <li><a href="">TENTANG</a></li>
-                                                <li><a href="">PROGRAM</a></li>
+                                                <li><a href="{{url('/')}}">BERANDA</a></li>
+                                                <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
+                                                <li><a href="{{url('program')}}">PROGRAM</a></li>
                                                 <li><a href="#home">PROJECT</a></li>
                                                 <li><a href="">RUANG RELAWAN</a></li>
-                                                <li><a href="">DAFTAR RELAWAN</a></li>
-												<li><a href="">USULKAN PENERIMA MANFAAT</a></li>
-                                                <li><a href="">KONTAK</a></li>
+                                                <li><a href="{{url('daftar_relawan')}}">DAFTAR RELAWAN</a></li>
+												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
+                                                <li><a href="{{url('kontak')}}">KONTAK</a></li>
                                             </ul>
 
 
@@ -73,48 +73,72 @@
                                                 <div class="separator"></div>
                                             </div>
                                             <div class="single_contant_left">
-                                                <form method="post" action="{{url('konfirmasi')}}">
+                                                <form method="post" action="{{url('/submit_konfirmasi')}}">
                                                     {{ csrf_field()}}
+
+                                                    @if ($donasi == null)
+                                                    <input type="hidden" name="id_donasi">
+                                                    @else
+                                                    <input type="hidden" name="id_donasi" value="{{$donasi->id}}">
+                                                    @endif
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6">
                                                             <label for="select">Project</label>
-                                                            <select id="select" class="form-control">
-                                                                <option>Disabled select</option>
+                                                            <select id="select" class="form-control" name="id_project">
+                                                            @if ($donasi == null)
+                                                                @foreach($projects as $project)
+                                                                <option value="{{$project->id}}" selected="true">{{$project->title}}</option>
+                                                                @endforeach
+                                                            @else
+                                                                <option value="{{$project->id}}">{{$project->title}}</option>
+                                                            @endif
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-md-6"> 
                                                             <label>Jumlah Donasi</label>
-                                                            <input type="number" name="jumlah" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+                                                            @if ($donasi == null)
+                                                                <input type="number" name="jumlah" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />    
+                                                            @else
+                                                                <input type="number" name="jumlah" value="{{$donasi->jumlah}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6">
                                                             <label for="email">Email</label>
-                                                            <input type="email" class="form-control" name="email" id="email">
+                                                            @if ($donasi == null)
+                                                                <input type="email" class="form-control" name="email" id="email">
+                                                            @else
+                                                                <input type="email" class="form-control" name="email" id="email" value="{{$donasi->email}}" disabled="true">
+                                                            @endif
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label for="nama">Nama</label>
-                                                            <input type="text" class="form-control" name="nama" id="nama">
+                                                            @if ($donasi == null)
+                                                                <input type="text" class="form-control" name="nama" id="nama">
+                                                            @else
+                                                                <input type="text" class="form-control" name="nama" id="nama" value="{{$donasi->nama}}" disabled="true">
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6">
                                                             <label for="nama_rekening">Nama Rekening</label>
-                                                            <input type="text" class="form-control" name="email" id="nama_rekening">
+                                                            <input type="text" class="form-control" name="nama_rekening" id="nama_rekening">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label for="tanggal">Tanggal</label>
-                                                            <input type="text" class="form-control" name="nama" id="tanggal">
+                                                            <input type="text" class="form-control" name="tanggal" id="tanggal">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6">
                                                             <label for="bank_asal">Bank Asal</label>
-                                                            <input type="text" class="form-control" name="email" id="bank_asal">
+                                                            <input type="text" class="form-control" name="bank_asal" id="bank_asal">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label for="bank_tujuan">Bank Tujuan</label>
-                                                            <input type="text" class="form-control" name="nama" id="bank_tujuan">
+                                                            <input type="text" class="form-control" name="bank_tujuan" id="bank_tujuan">
                                                         </div>
                                                     </div>
                                                     

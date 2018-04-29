@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 // ----------------------
@@ -149,13 +146,15 @@ Route::get('/view_project/{id}', 'ProjectController@user_view_project');
 
 Route::post('/donasi','ProjectController@donasi');
 
-Route::get('konfirmasi', function(){
-    return view('user.konfirmasi');
-});
+Route::get('/konfirmasi/{id}', 'ProjectController@konfirmasi');
+
+Route::get('/konfirmasi', 'ProjectController@konfirmasi_null');
+
+Route::post('/submit_konfirmasi','ProjectController@konfirmasi_submit');
 
 
 
-Route::get('/user', function(){
+Route::get('/', function(){
     return view('user.beranda');
 });
 

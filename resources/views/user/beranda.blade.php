@@ -31,13 +31,13 @@
 
                                             <ul class="nav navbar-nav navbar-right">
                                                 <li><a href="#home">BERANDA</a></li>
-                                                <li><a href="">TENTANG</a></li>
-                                                <li><a href="">PROGRAM</a></li>
-                                                <li><a href="">PROJECT</a></li>
+                                                <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
+                                                <li><a href="{{url('program')}}">PROGRAM</a></li>
+                                                <li><a href="{{url('project')}}">PROJECT</a></li>
                                                 <li><a href="">RUANG RELAWAN</a></li>
-                                                <li><a href="">DAFTAR RELAWAN</a></li>
-												<li><a href="">USULKAN PENERIMA MANFAAT</a></li>
-                                                <li><a href="">KONTAK</a></li>
+                                                <li><a href="{{url('daftar_relawan')}}">DAFTAR RELAWAN</a></li>
+												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
+                                                <li><a href="{{url('kontak')}}">KONTAK</a></li>
                                             </ul>
 
 
