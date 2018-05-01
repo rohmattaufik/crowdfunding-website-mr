@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Program;
 use App\ProgramDocumentation;
+use App\UserMessage;
 use DB;
 
 class ProgramController extends Controller
@@ -15,7 +16,8 @@ class ProgramController extends Controller
 
     public function viewall_program(){
         $programs = Program::all();
-        return view('admin.program.viewall')->with('programs', $programs);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.program.viewall')->with('programs', $programs)->with('messages', $messages);
     }
 
     public function view_program( $id_program ){
@@ -24,11 +26,13 @@ class ProgramController extends Controller
             return redirect()->back();
         }
         $dokumentasi = ProgramDocumentation::where('id_program', $id_program)->get();
-        return view('admin.program.view')->with('program',$program)->with('documentations',$dokumentasi);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.program.view')->with('program',$program)->with('documentations',$dokumentasi)->with('messages',$messages);
     }
 
     public function create_program (){
-        return view('admin.program.create');
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.program.create')->with('messages',$messages);
     }
     
     public function create_program_submit (Request $request){
@@ -51,7 +55,8 @@ class ProgramController extends Controller
         if($program == null){
             return redirect()->back();
         }
-        return view('admin.program.edit')->with('program',$program);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.program.edit')->with('program',$program)->with('messages',$messages);
     }
 
     public function edit_program_submit (Request $request){
@@ -96,7 +101,8 @@ class ProgramController extends Controller
         if($program == null){
             return redirect()->back();
         }
-        return view('admin.program.documentation.create')->with('id_program', $id_program);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.program.documentation.create')->with('id_program', $id_program)->with('messages',$messages);
     }
 
     public function create_program_documentation_submit (Request $request){
@@ -124,7 +130,8 @@ class ProgramController extends Controller
         if($documentation == null){
             return redirect()->back();
         }
-        return view('admin.program.documentation.edit')->with('documentation', $documentation);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.program.documentation.edit')->with('documentation', $documentation)->with('messages',$messages);
     }
 
     public function edit_program_documentation_submit (Request $request){

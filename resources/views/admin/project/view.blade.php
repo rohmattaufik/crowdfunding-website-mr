@@ -29,6 +29,8 @@
                 @else
                 <a href="{{url('admin/project/unpublish/'.$project->id)}}" class="btn btn-danger btn-sm" data-toggle="tooltip"
                     title="Nonaktifkan Project"><i class="fa fa-times"></i></a>
+                <a href="{{url('admin/project/pendonasi/'.$project->id)}}" class="btn btn-info btn-sm" data-toggle="tooltip"
+                    title="Lihat Pendonasi"><i class="fa fa-eye"></i></a>
                 @endif
                 <a href="{{url('admin/project/edit/'.$project->id)}}" type="button" class="btn btn-warning btn-sm" data-toggle="tooltip"
                         title="Edit Project">

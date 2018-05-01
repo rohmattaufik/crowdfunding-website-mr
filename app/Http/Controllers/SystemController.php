@@ -71,7 +71,7 @@ class SystemController extends Controller
     }
 
     public function admin(){
-        $messages = UserMessage::where('is_read',0)->get();
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
         return view('admin.layout.layout')->with('messages',$messages);
     }
 

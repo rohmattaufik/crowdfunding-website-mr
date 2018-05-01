@@ -17,17 +17,17 @@
 //    ADMIN
 // ----------------------
 
-Route::get('admin/system_about','SystemController@view_system_about');
+// Route::get('admin/system_about','SystemController@view_system_about');
 
-Route::get('admin/system_about/create','SystemController@create_system_about');
+// Route::get('admin/system_about/create','SystemController@create_system_about');
 
-Route::post('admin/system_about/create/submit','SystemController@create_system_about_submit');
+// Route::post('admin/system_about/create/submit','SystemController@create_system_about_submit');
 
-Route::get('admin/system_about/edit/{id}','SystemController@edit_system_about');
+// Route::get('admin/system_about/edit/{id}','SystemController@edit_system_about');
 
-Route::post('admin/system_about/edit/submit','SystemController@edit_system_about_submit');
+// Route::post('admin/system_about/edit/submit','SystemController@edit_system_about_submit');
 
-Route::get('admin/system_about/delete/{id}','SystemController@delete_system_about');
+// Route::get('admin/system_about/delete/{id}','SystemController@delete_system_about');
 
 
 
@@ -114,6 +114,8 @@ Route::get('admin/project/{id}','ProjectController@view_project');
 Route::get('admin/project/edit/{id}','ProjectController@edit_project');
 
 Route::post('admin/edit-project/submit','ProjectController@edit_project_submit');
+
+Route::get('admin/project/pendonasi/{id}','ProjectController@lihat_pendonasi');
 
 
 Route::get('admin', 'SystemController@admin');

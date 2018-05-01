@@ -8,6 +8,7 @@ use App\RecrutmentQuestion;
 use App\RecrutmentQuestionOption;
 use Carbon\Carbon;
 use DB;
+use App\UserMessage;
 
 class RecrutmentController extends Controller
 {
@@ -17,7 +18,8 @@ class RecrutmentController extends Controller
 
     // RECRUTMENT TERM
     public function create_recrutment_term(){
-        return view('admin.recrutment.term.create');
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.recrutment.term.create')->with('messages',$messages);
     }
 
     public function create_recrutment_term_submit(Request $request){
@@ -42,7 +44,8 @@ class RecrutmentController extends Controller
 
     public function viewall_recrutment_term(){
         $recrutments = RecrutmentTerm::all();
-        return view('admin.recrutment.term.viewall')->with('recrutments', $recrutments);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.recrutment.term.viewall')->with('recrutments', $recrutments)->with('messages',$messages);
     }
 
     public function view_recrutment_term($id_term){
@@ -51,7 +54,8 @@ class RecrutmentController extends Controller
             return redirect()->back();
         }
         $questions = RecrutmentQuestion::where('id_recrutment_term', $id_term)->get();
-        return view('admin.recrutment.term.view')->with('recrutment', $recrutment_term)->with('questions',$questions);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.recrutment.term.view')->with('recrutment', $recrutment_term)->with('questions',$questions)->with('messages',$messages);
     }
 
     public function edit_recrutment_term($id_term){
@@ -59,7 +63,8 @@ class RecrutmentController extends Controller
         if($recrutment_term == null){
             return redirect()->back();
         }
-        return view('admin.recrutment.term.edit')->with('recrutment', $recrutment_term);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.recrutment.term.edit')->with('recrutment', $recrutment_term)->with('messages',$messages);
     }
 
     public function edit_recrutment_term_submit (Request $request){

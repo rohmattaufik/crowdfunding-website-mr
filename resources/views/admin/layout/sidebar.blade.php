@@ -20,12 +20,6 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="{{url('admin/system_about')}}">
-            <i class="fa fa-files-o"></i>
-            <span>Tentang MR</span>
-          </a>
-        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -48,8 +42,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Lihat</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Tambah</a></li>
+            <li><a href="{{url('admin/project')}}"><i class="fa fa-circle-o"></i> Lihat</a></li>
+            <li><a href="{{url('admin/new-project')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
           </ul>
         </li>
         <li class="treeview">

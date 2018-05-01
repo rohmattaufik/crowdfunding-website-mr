@@ -21,7 +21,7 @@ class ProjectController extends Controller
         foreach($projects as $project){
             $project['program'] = Program::find($project->program_id);
         }
-        $messages = UserMessage::where('is_read',0)->get();
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
         return view('admin.project.viewall')->with('projects',$projects)->with('messages',$messages);
     }
 
@@ -31,13 +31,13 @@ class ProjectController extends Controller
             return redirect()->back();
         }
         $project['program'] = Program::find($project->program_id);
-        $messages = UserMessage::where('is_read',0)->get();
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
         return view('admin.project.view')->with('project',$project)->with('messages',$messages);
     }
 
     public function create_project(){
         $programs = Program::all();
-        $messages = UserMessage::where('is_read',0)->get();
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
         return view('admin.project.create')->with('programs',$programs)->with('messages',$messages);
     }
 
@@ -79,7 +79,7 @@ class ProjectController extends Controller
         }
         $project['program'] = Program::find($project->program_id);
         $programs = Program::all();
-        $messages = UserMessage::where('is_read',0)->get();
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
         return view('admin.project.edit')->with('project',$project)->with('programs',$programs)->with('messages',$messages);
     }
 
@@ -114,6 +114,16 @@ class ProjectController extends Controller
         $project->save();
 
         return redirect('admin/project/'.$project_id);
+    }
+
+    public function lihat_pendonasi($id_project){
+        $project = Project::find($id_project);
+        if($project == null){
+            return redirect()->back();
+        }
+        $pendonasi = Donation::where('id_project',$id_project)->get();
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.project.view_pendonasi')->with('project',$project)->with('donations',$pendonasi)->with('messages',$messages);
     }
 
 
