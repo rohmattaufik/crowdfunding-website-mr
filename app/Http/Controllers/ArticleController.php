@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\UserMessage;
 
 class ArticleController extends Controller
 {
@@ -12,12 +13,14 @@ class ArticleController extends Controller
     // --------------------------
 
     public function create_article () {
-        return view('admin.article.create');
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.article.create')->with('messages',$messages);
     }
 
     public function create_article_submit (Request $request){
         $title      = $request->title;
         $content    = $request->content;
+        $category   = $request->category;
         $file = $request->file('image');
 
         if($title == null or $title=="" or $content==null or $content=="" or empty($file)){
@@ -32,14 +35,16 @@ class ArticleController extends Controller
         $article->title = $title;
         $article->content = $content;
         $article->image   = $image;
-        $article->flag_active = 1;
+        $article->category = $category;
+        $article->flag_active = 0;
         $article->save();
-        return redirect('admin/article');
+        return redirect('admin/ruang_relawan');
     }
 
     public function viewall_article (){
-        $articles = Article::where('flag_active', 1)->get();
-        return view('admin.article.viewall')->with('articles', $articles);
+        $articles = Article::all();
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.article.viewall')->with('articles', $articles)->with('messages',$messages);
     }
 
     public function view_article($id_article){
@@ -47,7 +52,8 @@ class ArticleController extends Controller
         if($article==null){
             return redirect::back();
         }
-        return view('admin.article.view')->with('article',$article);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.article.view')->with('article',$article)->with('messages',$messages);
     }
 
     public function edit_article($id_article){
@@ -55,7 +61,8 @@ class ArticleController extends Controller
         if($article==null){
             return redirect::back();
         }
-        return view('admin.article.edit')->with('article',$article);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.article.edit')->with('article',$article)->with('messages',$messages);
     }
 
     public function edit_article_submit(Request $request){
@@ -65,6 +72,7 @@ class ArticleController extends Controller
         }
         $title      = $request->title;
         $content    = $request->content;
+        $category   = $request->category;
         $file = $request->file('image');
 
         if($title == null or $title=="" or $content==null or $content==""){
@@ -82,9 +90,9 @@ class ArticleController extends Controller
 
         $article->title = $title;
         $article->content = $content;
-        $article->flag_active = 1;
+        $article->category = $category;
         $article->save();
-        return redirect('admin/article');
+        return redirect('admin/ruang_relawan');
     }
 
     public function delete_article ($id_article){

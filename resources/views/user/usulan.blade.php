@@ -61,55 +61,53 @@
             
             <section id="contact" class="contact" style="padding-bottom:10em;">
                     <div class="container" >
-                                            <div class="head_title" style="padding-top:5em;">
-                                                <h3>USULKAN PENERIMA MANFAAT</h3>
-                                                <div class="separator"></div>
-                                            </div>
-                                            <div class="single_contant_left">
-                                                <form action="#" id="formid">
-                                                    <!--<div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">-->
-    
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" name="name" placeholder="First Name" required="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" name="name" placeholder="Last Name" required="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-    
-    
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input type="email" class="form-control" name="email" placeholder="Email" required="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-    
-    
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" name="message" rows="8" placeholder="Message"></textarea>
-                                                    </div>
-    
-                                                    <div class="">
-                                                        <input type="submit" value="Submit" class="btn btn-primary">
-                                                    </div>
-                                                    <!--</div>--> 
-                                                </form>
-                                            </div>
-    
-                            
+                        <div class="head_title" style="padding-top:5em;">
+                            <h3>USULKAN PENERIMA MANFAAT</h3>
+                            <div class="separator"></div>
                         </div>
+                        <div class="single_contant_left">
+                            <form action="{{url('usulkan_penerima_manfaat')}}" method="post" id="formid">
+                                <!--<div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">-->
+                                {{ csrf_field() }}
+                                <div class="row">   
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="nama_pengusul" placeholder="Nama Pengusul" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email_pengusul" placeholder="Email Pengusul" required="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="nama_penerima" placeholder="Nama Penerima Manfaat" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="alamat" placeholder="Alamat Penerima Manfaat" required="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <textarea class="form-control" name="alasan" rows="8" placeholder="Alasan mengusulkan penerima manfaat"></textarea>
+                                </div>
+
+                                <div class="">
+                                    <input type="submit" value="Submit" class="btn btn-primary">
+                                </div>
+                                <!--</div>--> 
+                            </form>
+                        </div>
+                    </div>
                 </section>  <!-- End of contact section -->
     
     

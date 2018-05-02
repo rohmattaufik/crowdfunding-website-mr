@@ -55,8 +55,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Lihat</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Tambah</a></li>
+            <li><a href="{{url('admin/ruang_relawan')}}"><i class="fa fa-circle-o"></i> Lihat</a></li>
+            <li><a href="{{url('admin/tambah_ruang_relawan')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -72,7 +72,7 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="{{url('/admin/usulan_penerima_manfaat')}}">
             <i class="fa fa-edit"></i> <span>Usulan Penerima Manfaat</span>
           </a>
         </li>

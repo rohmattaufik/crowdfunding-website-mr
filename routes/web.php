@@ -31,15 +31,15 @@
 
 
 
-Route::get('admin/article','ArticleController@viewall_article');
+Route::get('admin/ruang_relawan','ArticleController@viewall_article');
 
-Route::get('admin/article/{id}','ArticleController@view_article');
+Route::get('admin/ruang_relawan/{id}','ArticleController@view_article');
 
-Route::get('admin/article/create','ArticleController@create_article');
+Route::get('admin/tambah_ruang_relawan','ArticleController@create_article');
 
 Route::post('admin/article/create/submit','ArticleController@create_article_submit');
 
-Route::get('admin/article/edit/{id}','ArticleController@edit_article');
+Route::get('admin/ruang_relawan/edit/{id}','ArticleController@edit_article');
 
 Route::post('admin/article/edit/submit','ArticleController@edit_article_submit');
 
@@ -118,7 +118,13 @@ Route::post('admin/edit-project/submit','ProjectController@edit_project_submit')
 Route::get('admin/project/pendonasi/{id}','ProjectController@lihat_pendonasi');
 
 
+
+Route::get('admin/usulan_penerima_manfaat','UsulanController@lihat_usulan');
+
+
+
 Route::get('admin', 'SystemController@admin');
+
 
 
 
@@ -154,6 +160,7 @@ Route::get('/konfirmasi', 'ProjectController@konfirmasi_null');
 
 Route::post('/submit_konfirmasi','ProjectController@konfirmasi_submit');
 
+Route::post('/usulkan_penerima_manfaat','UsulanController@usulkan');
 
 
 Route::get('/', function(){
