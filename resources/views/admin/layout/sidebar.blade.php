@@ -71,7 +71,7 @@
             <li><a href="{{url('admin/create/recrutment/term')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li >
           <a href="{{url('/admin/usulan_penerima_manfaat')}}">
             <i class="fa fa-edit"></i> <span>Usulan Penerima Manfaat</span>
           </a>

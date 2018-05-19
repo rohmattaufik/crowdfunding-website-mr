@@ -95,13 +95,23 @@ class ArticleController extends Controller
         return redirect('admin/ruang_relawan');
     }
 
-    public function delete_article ($id_article){
+    public function unpublish ($id_article){
         $article = Article::find($id_article);
         if($article==null){
             return redirect::back();
         }
         $article->flag_active = 0;
         $article->save();
-        return redirect('admin/article');
+        return redirect()->back();
+    }
+
+    public function publish ($id_article){
+        $article = Article::find($id_article);
+        if($article==null){
+            return redirect::back();
+        }
+        $article->flag_active = 1;
+        $article->save();
+        return redirect()->back();
     }
 }

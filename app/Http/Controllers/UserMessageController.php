@@ -8,6 +8,23 @@ use App\UserMessage;
 class UserMessageController extends Controller
 {
     // --------------------------------
+    //  ADMIN AREA
+    // --------------------------------
+
+    public function get_message (){
+        $pesans = UserMessage::orderBy('created_at','desc')->get();
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        $unread = UserMessage::where('is_read',0)->get();
+        foreach($unread as $pesan){
+            $pesan->is_read = 1;
+            $pesan->save();
+        }
+        return view('admin.message.viewall')->with('pesans',$pesans)->with('messages',$messages);
+    }
+    
+    
+    
+    // --------------------------------
     //  USER AREA
     // --------------------------------
 

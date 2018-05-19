@@ -24,14 +24,14 @@
               <!-- tools box -->
               <div class="pull-right box-tools">
                 @if($article->flag_active == 0)
-                <a href="{{url('admin/project/publish/'.$article->id)}}" class="btn btn-success btn-sm" data-toggle="tooltip"
-                    title="Aktifkan Project"><i class="fa fa-check-circle"></i></a>
+                <a href="{{url('admin/ruang_relawan/publish/'.$article->id)}}" class="btn btn-success btn-sm" data-toggle="tooltip"
+                    title="Aktifkan Artikel"><i class="fa fa-check-circle"></i></a>
                 @else
-                <a href="{{url('admin/project/unpublish/'.$article->id)}}" class="btn btn-danger btn-sm" data-toggle="tooltip"
-                    title="Nonaktifkan Project"><i class="fa fa-times"></i></a>
+                <a href="{{url('admin/ruang_relawan/unpublish/'.$article->id)}}" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                    title="Nonaktifkan Artikel"><i class="fa fa-times"></i></a>
                 @endif
                 <a href="{{url('admin/ruang_relawan/edit/'.$article->id)}}" type="button" class="btn btn-warning btn-sm" data-toggle="tooltip"
-                        title="Edit Project">
+                        title="Edit Artikel">
                   <i class="fa fa-edit"></i></a>
               </div>
               <!-- /. tools -->

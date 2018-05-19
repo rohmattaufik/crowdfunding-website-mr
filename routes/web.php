@@ -43,7 +43,9 @@ Route::get('admin/ruang_relawan/edit/{id}','ArticleController@edit_article');
 
 Route::post('admin/article/edit/submit','ArticleController@edit_article_submit');
 
-Route::get('admin/article/delete/{id}','ArticleController@delete_article');
+Route::get('admin/ruang_relawan/unpublish/{id}','ArticleController@unpublish');
+
+Route::get('admin/ruang_relawan/publish/{id}','ArticleController@publish');
 
 
 
@@ -124,6 +126,8 @@ Route::get('admin/usulan_penerima_manfaat','UsulanController@lihat_usulan');
 
 
 Route::get('admin', 'SystemController@admin');
+
+Route::get('admin/messages','UserMessageController@get_message');
 
 
 
