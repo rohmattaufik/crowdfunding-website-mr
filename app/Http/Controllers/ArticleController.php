@@ -114,4 +114,22 @@ class ArticleController extends Controller
         $article->save();
         return redirect()->back();
     }
+
+
+    // --------------------------
+    //      USER AREA
+    // --------------------------
+
+    public function viewall_news(){
+        $news = Article::where('flag_active',1)->get();
+        return view('user.news')->with('news',$news);
+    }
+
+    public function view_news($id_news){
+        $news = Article::where('id',$id_news)->first();
+        if($news == null or $news->flag_active == 0){
+            return redirect()->back();
+        }
+        return view('user.viewnews')->with('news',$news);
+    }
 }

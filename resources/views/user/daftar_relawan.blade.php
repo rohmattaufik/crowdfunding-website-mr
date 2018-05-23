@@ -33,7 +33,7 @@
                                                 <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
                                                 <li><a href="{{url('program')}}">PROGRAM</a></li>
                                                 <li><a href="{{url('project')}}">PROJECT</a></li>
-                                                <li><a href="">RUANG RELAWAN</a></li>
+                                                <li><a href="{{url('news')}}">RUANG RELAWAN</a></li>
                                                 <li><a href="#home">DAFTAR RELAWAN</a></li>
 												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
                                                 <li><a href="{{url('kontak')}}">KONTAK</a></li>
@@ -87,21 +87,32 @@
                                                             <div class="single_contant_left">
                                                                     <form action="#" id="formid">
                                                                         <!--<div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">-->
-                        
+                                                                        {{ csrf_field() }}
                                                                         
-                                                                            
-                                                                        <div class="form-group">
-                                                                            <input type="text" class="form-control" name="name" placeholder="First Name" required="">
-                                                                        </div>
-                                                                            
-                                                                        <div class="form-group">
-                                                                            <input type="text" class="form-control" name="name" placeholder="Last Name" required="">
-                                                                        </div>
-                        
-                        
-                                                                        <div class="form-group">
-                                                                            <textarea class="form-control" name="message" rows="8" placeholder="Message"></textarea>
-                                                                        </div>
+                                                                        @foreach($term->questions as $question)
+                                                                            @if($question->answer_type == 1)
+                                                                            <div class="form-group">
+                                                                                <label>{!! html_entity_decode($question->question) !!}</label>
+                                                                                <input type="text" class="form-control" name="{{$question->id}}">
+                                                                            </div>
+                                                                            @elseif($question->answer_type == 2)
+                                                                            <div class="form-group">
+                                                                                <label>{!! html_entity_decode($question->question) !!}</label>
+                                                                                <textarea class="form-control" name="{{$question->id}}" rows="8"></textarea>
+                                                                            </div>
+                                                                            @elseif($question->answer_type == 3)
+                                                                            <div class="form-group">
+                                                                                <label>{!! html_entity_decode($question->question) !!}</label>
+                                                                                <select class="form-control" name="{{$question->id}}">
+                                                                                    @foreach($question->options as $option)
+                                                                                    <option value="{{$option->id}}">{{$option->option_text}}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+    
+                                                                            @endif
+                                                                        @endforeach
+                                                                        
                         
                                                                         <div class="">
                                                                             <input type="submit" value="Submit" class="btn btn-primary">

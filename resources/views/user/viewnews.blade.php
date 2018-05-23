@@ -34,9 +34,9 @@
                                                 <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
                                                 <li><a href="{{url('program')}}">PROGRAM</a></li>
                                                 <li><a href="{{url('project')}}">PROJECT</a></li>
-                                                <li><a href="{{url('news')}}">RUANG RELAWAN</a></li>
+                                                <li><a href="#home">RUANG RELAWAN</a></li>
                                                 <li><a href="{{url('daftar_relawan')}}">DAFTAR RELAWAN</a></li>
-												<li><a href="#home">USULKAN PENERIMA MANFAAT</a></li>
+												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
                                                 <li><a href="{{url('kontak')}}">KONTAK</a></li>
                                             </ul>
 
@@ -56,65 +56,46 @@
 
 
 
-            <section id="home" class="home" style="padding-bottom:7em;">
+            <section id="home" class="home">
             </section>
-            
-            <section id="contact" class="contact" style="padding-bottom:10em;">
-                    <div class="container" >
-                        <div class="head_title" style="padding-top:5em;">
-                            <h3>USULKAN PENERIMA MANFAAT</h3>
-                            <div class="separator"></div>
-                        </div>
-                        <div class="single_contant_left">
-                            <form action="{{url('usulkan_penerima_manfaat')}}" method="post" id="formid">
-                                <!--<div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">-->
-                                {{ csrf_field() }}
-                                <div class="row">   
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="nama_pengusul" placeholder="Nama Pengusul" required="">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" name="email_pengusul" placeholder="Email Pengusul" required="">
-                                        </div>
-                                    </div>
+
+            <section id="features" class="features" style="padding-top:5em;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="main_features_area sections">
+                                <div class="head_title">
+                                    <h3>{{$news->title}}</h3>
+                                    <div class="separator"></div>
                                 </div>
-
-
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="nama_penerima" placeholder="Nama Penerima Manfaat" required="">
+                                    <div class="main_features_content">
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+
+                                            <div class="single_ft_s_item" style="text-align:center;">
+                                                <img src="{{URL::asset($news->image)}}" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="single_features_text">
+                                                <p>{!! html_entity_decode($news->content)!!}</p><hr>
+                                                <a href="" class="btn">SHARE</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="alamat" placeholder="Alamat Penerima Manfaat" required="">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <textarea class="form-control" name="alasan" rows="8" placeholder="Alasan mengusulkan penerima manfaat"></textarea>
-                                </div>
-
-                                <div class="">
-                                    <input type="submit" value="Submit" class="btn btn-primary">
-                                </div>
-                                <!--</div>--> 
-                            </form>
+                                </div> 
+                            </div>
                         </div>
                     </div>
-                </section>  <!-- End of contact section -->
-    
-    
-
+                </div>
+            </section>
+            
             
 
-                @include('user.layout.footer')
+            @include('user.layout.footer')
+
+
 
         </div>
 

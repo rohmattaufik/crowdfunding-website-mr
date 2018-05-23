@@ -9,6 +9,11 @@ use Carbon\Carbon;
 use App\Donation;
 use App\UserMessage;
 
+use App\Http\Controllers\Controller;
+use App\Mail\DemoEmail;
+use App\Mail\RekeningDonasi;
+use Illuminate\Support\Facades\Mail;
+
 class ProjectController extends Controller
 {
     
@@ -165,6 +170,14 @@ class ProjectController extends Controller
         if($project_id == null or $email == null or $jumlah == null){
             return redirect()->back();
         }
+        $objDemo = new \stdClass();
+        $objDemo->demo_one = 'Berikut rekening yang bisa ditransfer';
+        $objDemo->demo_two = 'Demo Two Value';
+        $objDemo->sender = 'Madrasah Relawan';
+        $objDemo->receiver = $nama;
+ 
+        Mail::to($email)->send(new RekeningDonasi($objDemo));
+
         $donasi = new Donation;
         $donasi->id_project = $project_id;
         $donasi->email = $email;
@@ -177,8 +190,10 @@ class ProjectController extends Controller
         $donasi->jumlah = $jumlah;
         $donasi->is_confirmation = 0;
         $donasi->save();
+
         
-        return redirect()->back();
+        
+        return redirect('/konfirmasi/'.$donasi->id);
     }
 
     public function konfirmasi( $id_donasi ){

@@ -33,7 +33,7 @@
                                                 <li><a href="#home">TENTANG</a></li>
                                                 <li><a href="{{url('program')}}">PROGRAM</a></li>
                                                 <li><a href="{{url('project')}}">PROJECT</a></li>
-                                                <li><a href="">RUANG RELAWAN</a></li>
+                                                <li><a href="{{url('news')}}">RUANG RELAWAN</a></li>
                                                 <li><a href="{{url('daftar_relawan')}}">DAFTAR RELAWAN</a></li>
 												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
                                                 <li><a href="{{url('kontak')}}">KONTAK</a></li>
@@ -55,7 +55,8 @@
 
 
 
-            <section id="home" class="home" style="padding-bottom:5em;">
+            <section id="home" class="home" style="padding-top:7em;">
+                <img src="{{URL::asset('image/tentang.png')}}" width="100%">
             </section>
 
             <section id="features" class="features">

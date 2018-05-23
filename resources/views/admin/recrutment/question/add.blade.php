@@ -32,8 +32,6 @@
                                 <option value="1">Text</option>
                                 <option value="2">Text Panjang</option>
                                 <option value="3">Option</option>
-                                <option value="4">Tanggal</option>
-                                <option value="5">option 5</option>
                             </select>
                         </div>
                         <div class="form-group">

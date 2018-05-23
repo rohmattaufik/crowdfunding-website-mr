@@ -116,7 +116,8 @@ class RecrutmentController extends Controller
         if($recrutment_term == null){
             return redirect()->back();
         }
-        return view('admin.recrutment.question.add')->with('recrutment', $recrutment_term);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.recrutment.question.add')->with('recrutment', $recrutment_term)->with('messages',$messages);
     }
 
     public function add_recrutment_question_submit (Request $request){
@@ -144,7 +145,8 @@ class RecrutmentController extends Controller
         if($recrutment_question == null){
             return redirect()->back();
         }
-        return view('admin.recrutment.question.edit')->with('recrutment_question', $recrutment_question);
+        $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
+        return view('admin.recrutment.question.edit')->with('recrutment_question', $recrutment_question)->with('messages',$messages);
     }
 
     public function edit_recrutment_question_submit (Request $request){
@@ -184,7 +186,7 @@ class RecrutmentController extends Controller
         foreach($recrutments as $term){
             $term['questions'] = RecrutmentQuestion::where('id_recrutment_term',$term->id)->get();
             foreach($term['questions'] as $question){
-                if($question->answer_type == 6){
+                if($question->answer_type == 3){
                     $question['options'] = RecrutmentQuestionOption::where('id_recrutment_question',$question->id)->get();
                 }
             }

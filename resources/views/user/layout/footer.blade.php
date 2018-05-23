@@ -5,19 +5,38 @@
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="main_widget">
-                                        <div class="col-sm-3 col-xs-12">
+                                        <div class="col-sm-4 col-xs-12">
                                             <div class="single_widget wow fadeIn" data-wow-duration="800ms">
                                                 <div class="footer_logo">
-                                                    <img src="assets/images/logo.png" alt="" />
+                                                    <img src="{{URL::asset('LogicFree/assets/images/logo-madrasah-relawan.png')}}" alt="" />
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                                                    nisi ut aliquip ex ea commodo consequat. </p>
+                                                <p>Madrasah Relawan (MR) sebuah gerakan yang diinisiasi oleh LAZIS Dewan Da'wah, Madrasah Relawan 
+                                                di bentuk dalam rangka merangkul pemuda muslim untuk bersama memberikan kebermanfaatan bagi ummat. 
+                                                LAZNAS Dewan Da'wah berada dibawah naungan Yayasan Dewan Da'wah yang berdiri pada tahun 1967 dan 
+                                                merupakan salah satu Lembaga Amil Zakat Nasional (SK Kemenag no 712 tahun 2016). 
+                                                </p>
 
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-3  col-xs-12">
+                                        
+
+                                        <div class="col-sm-4  col-xs-12">
+                                            <div class="single_widget wow fadeIn" data-wow-duration="800ms">
+
+                                                <div class="footer_title">
+                                                    <h4>KANTOR</h4>
+                                                    <div class="separator"></div>
+                                                </div>
+                                                <ul>
+                                                    <p>
+                                                        Gedung Laznas Dewan Dakwah Lantai 5
+                                                        Jl Panjang no 12, Kebon Jeruk, Jakarta Barat
+                                                        Provinsi DKI Jakarta</p>
+                                                </ul> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4  col-xs-12">
                                             <div class="single_widget wow fadeIn" data-wow-duration="800ms">
 
                                                 <div class="footer_title">
@@ -25,31 +44,19 @@
                                                     <div class="separator"></div>
                                                 </div>
                                                 <ul>
-                                                    <li><a href="">Services</a></li>
-                                                    <li><a href="">About Us</a></li>
-                                                    <li><a href="">Our Team</a></li>
-                                                    <li><a href="">Portfolio</a></li>
+                                                    <li><a href="#home">BERANDA</a></li>
+                                                    <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
+                                                    <li><a href="{{url('program')}}">PROGRAM</a></li>
+                                                    <li><a href="{{url('project')}}">PROJECT</a></li>
+                                                    <li><a href="{{url('news')}}">RUANG RELAWAN</a></li>
+                                                    <li><a href="{{url('daftar_relawan')}}">DAFTAR RELAWAN</a></li>
+                                                    <li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
+                                                    <li><a href="{{url('kontak')}}">KONTAK</a></li>
                                                 </ul> 
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-3  col-xs-12">
-                                            <div class="single_widget wow fadeIn" data-wow-duration="800ms">
-
-                                                <div class="footer_title">
-                                                    <h4>ACHIVES</h4>
-                                                    <div class="separator"></div>
-                                                </div>
-                                                <ul>
-                                                    <li><a href="">January 2015</a></li>
-                                                    <li><a href="">February 2015</a></li>
-                                                    <li><a href="">March 2015</a></li>
-                                                    <li><a href="">April 2015</a></li>
-                                                </ul> 
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-3 col-xs-12">
+                                        <!-- <div class="col-sm-3 col-xs-12">
                                             <div class="single_widget wow fadeIn" data-wow-duration="800ms">
 
                                                 <div class="footer_title">
@@ -69,7 +76,7 @@
 
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
 
@@ -89,7 +96,7 @@
 
                         <div class="col-sm-6 col-xs-12">
                             <div class="copyright_text">
-                                <p class=" wow fadeInRight" data-wow-duration="1s">Made with <i class="fa fa-heart"></i> by <a href="http://bootstrapthemes.co">Bootstrap Themes</a>2016. All Rights Reserved</p>
+                                <!-- <p class=" wow fadeInRight" data-wow-duration="1s">Made with <i class="fa fa-heart"></i> by <a href="http://bootstrapthemes.co">Bootstrap Themes</a>2016. All Rights Reserved</p> -->
                             </div>
                         </div>
 

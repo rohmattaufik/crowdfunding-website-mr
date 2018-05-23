@@ -34,7 +34,7 @@
                                                 <li><a href="{{url('tentang-mr')}}">TENTANG</a></li>
                                                 <li><a href="{{url('program')}}">PROGRAM</a></li>
                                                 <li><a href="{{url('project')}}">PROJECT</a></li>
-                                                <li><a href="">RUANG RELAWAN</a></li>
+                                                <li><a href="{{url('news')}}">RUANG RELAWAN</a></li>
                                                 <li><a href="{{url('daftar_relawan')}}">DAFTAR RELAWAN</a></li>
 												<li><a href="{{url('usulan')}}">USULKAN PENERIMA MANFAAT</a></li>
                                                 <li><a href="{{url('kontak')}}">KONTAK</a></li>
@@ -56,7 +56,7 @@
 
 
 
-            <section id="home" class="home">
+            <section id="home" class="home" style="background:url({{URL::asset('image/madrasah_relawan4.jpg')}}) no-repeat 100% 100%">
                 <div class="overlay">
                     <div class="container">
                         <div class="row">
@@ -111,34 +111,26 @@
                                 <div class="row">
                                     <div class="main_features_content">
 
-                                        <div class="col-sm-6">
-
-                                            <div class="single_features_slide">
-                                                <div class="single_ft_s_item">
-                                                    <img src="assets/images/featureslid1.jpg" alt="" />
-                                                </div>
-                                                <div class="single_ft_s_item">
-                                                    <img src="assets/images/featureslid1.jpg" alt="" />
-                                                </div>
-                                                <div class="single_ft_s_item">
-                                                    <img src="assets/images/featureslid1.jpg" alt="" />
-                                                </div>
+                                        <div class="col-sm-6">    
+                                            <div class="single_ft_s_item">
+                                                <img src="{{URL::asset($project_pilihan->image)}}" alt="" />
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="single_features_text">
-                                                <h4>HAND WITH A WATCH</h4>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                                    when an unknown printer took a galley of type and scrambled </p>
-
+                                                <h4>{{$project_pilihan->title}}</h4>
                                                 <ul>
-                                                    <li><span>Client:</span> Dadit Lorm</li>
-                                                    <li><span>Deivered:</span> Sunday, 15 August, 2015</li>
-                                                    <li><span>Tags:</span> Hand, Watch, Black, Tree</li>
+                                                    <li><span>Tanggal Tutup:</span> {{$project_pilihan->date_close}}</li>
+                                                    <li><span>Jumlah Dana  :</span> Rp {{ number_format($project_pilihan->target_dana,2,',','.')}}</li>
+                                                    <li><span>Dana Terkumpul  :</span> Rp {{ number_format($project_pilihan->dana_terkumpul,2,',','.')}}</li>
                                                 </ul>
-
-                                                <a href="" class="btn">LAUNCH NOW</a>
+                                                <hr>
+                                                <p>{!! html_entity_decode(substr($project_pilihan->deskripsi,0,500)) !!}</p><br>
+                                                <div class="skillbar" data-percent="{{($project_pilihan->dana_terkumpul/$project_pilihan->target_dana)*100}}%">
+                                                    <div class="skillbar-title"><p class="blue"><strong>Progress</strong></p><span class="sm-text">{{ number_format((float)$project_pilihan->dana_terkumpul/$project_pilihan->target_dana*100 , 2, '.', '') }} %</span></div>
+                                                    <div class="skillbar-bar blue"></div>
+                                                </div>
+                                                <a href="" class="btn">Lihat Project</a>
                                             </div>
                                         </div>
                                     </div>
@@ -162,72 +154,42 @@
                                             <div>
                                             
                                             <div class="col-sm-12">
-                                            <div class="col-sm-4">
-                                                
-                                                
-                                                <div class="thumbnail">
-                                                <img src="assets/images/featureslid1.jpg" alt="...">
-                                                <div class="caption">
-                                                    <h3>Thumbnail label</h3>
-                                                    <div class="col-sm-12 col-md-12">
-                                                        <div class="col-sm-6">
-                                                                <p>Target dana : </p>
+                                            @if(count($projects) >0 )
+                                                @foreach($projects as $project)
+                                                <div class="col-sm-4">
+                                                    <div class="thumbnail">
+                                                        <img src="{{URL::asset($project->image)}}" alt="...">
+                                                        <div class="caption">
+                                                            <h3>{{$project->title}}</h3>
+                                                            <div class="col-sm-12 col-md-12">
+                                                                <div class="col-sm-6">
+                                                                    <p>Target dana : </p>
+                                                                </div>
+                                                            <div class="col-sm-6 pull-right">
+                                                                <p>Rp {{ number_format($project->target_dana,2,',','.')}}</p>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-6 pull-right">
-                                                                <p>Rp 1000.000,-</p>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-12 pull-right" style="border-bottom: 1px solid grey;">
+                                                        <div class="col-sm-12 col-md-12 pull-right" style="border-bottom: 1px solid grey;">
                                                             <div class="col-sm-6">
                                                                     <p>Dibuka hingga : </p>
                                                             </div>
                                                             <div class="col-sm-6 pull-right">
-                                                                    <p>14 Februari 2018</p>
+                                                                    <p>{{$project->date_close}}</p>
                                                             </div>
-                                                    </div>
-                                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                    <div class="skillbar" data-percent="79%">
-                                                        <div class="skillbar-title"><p class="blue"><strong>Progress</strong></p><span class="sm-text">79%</span></div>
-                                                        <div class="skillbar-bar blue"></div>
-                                                    </div>
-                                                    <p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        <div class="col-sm-4">
-                                                <div class="thumbnail">
-                                                <img src="assets/images/featureslid1.jpg" alt="...">
-                                                <div class="caption">
-                                                    <h3>Thumbnail label</h3>
-                                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                    <p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        <div class="col-sm-4">
-                                                <div class="thumbnail">
-                                                <img src="assets/images/featureslid1.jpg" alt="...">
-                                                <div class="caption">
-                                                    <h3>Thumbnail label</h3>
-                                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                    <p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <div class="col-sm-4">
-                                                    <div class="thumbnail">
-                                                    <img src="assets/images/featureslid1.jpg" alt="...">
-                                                    <div class="caption">
-                                                        <h3>Thumbnail label</h3>
-                                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                        <p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                                        </div>
+                                                        <p>{!! html_entity_decode(substr($project->deskripsi, 0, 500)) !!}</p>
+                                                        <div class="skillbar" data-percent="{{($project->dana_terkumpul/$project->target_dana)*100}}%">
+                                                            <div class="skillbar-title"><p class="blue"><strong>Progress</strong></p><span class="sm-text">{{ number_format((float)$project->dana_terkumpul/$project->target_dana*100 , 2, '.', '') }} %</span></div>
+                                                            <div class="skillbar-bar blue"></div>
+                                                        </div>
+                                                        <p><a href="{{url('view_project/'.$project->id)}}" class="btn btn-default" role="button">Lihat Project</a></p>
                                                     </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                @endforeach
+                                                @else
+                                                Belum ada project
+                                                @endif
+                                        
                                     </div>
                                 </div>
                                 <div class="pull-right">
@@ -249,74 +211,21 @@
                                     </div>
 
                                     <div class="main_othersservice_content">
+                                        @if(count($programs) > 0)
+                                        @foreach($programs as $program)
                                         <div class="col-sm-4">
                                             <div class="single_othersservice">
                                                 <div class="single_othersservice_icon">
-                                                    <h4><span><i class="fa fa-clock-o"></i></span> AIR BUAT SEDULUR</h4>
+                                                    <h4><span><i class="fa fa-television"></i></span> {{$program->name}}</h4>
                                                 </div>
                                                 <div class="single_othersservice_content">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                                                    <p>{!! html_entity_decode(substr($program->program_info,0,500))!!}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
-                                            <div class="single_othersservice">
-                                                <div class="single_othersservice_icon">
-                                                    <h4> <span><i class="fa fa-picture-o"></i></span> WEB DEVELOPMENT</h4>
-                                                </div>
-                                                <div class="single_othersservice_content">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="single_othersservice">
-                                                <div class="single_othersservice_icon">
-                                                    <h4> <span><i class="fa fa-television"></i></span> VIDEO EDITING</h4>
-                                                </div>
-                                                <div class="single_othersservice_content">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-sm-4">
-                                            <div class="single_othersservice">
-                                                <div class="single_othersservice_icon">
-                                                    <h4> <span><i class="fa fa-object-group"></i></span> MARKETING</h4>
-                                                </div>
-                                                <div class="single_othersservice_content">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <div class="single_othersservice">
-                                                <div class="single_othersservice_icon">
-                                                    <h4> <span><i class="fa fa-object-group"></i></span> PHOTOGRAPHY</h4>
-                                                </div>
-                                                <div class="single_othersservice_content">
-
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <div class="single_othersservice">
-                                                <div class="s_ot_i_area">
-                                                    <div class="single_othersservice_icon">
-                                                        <h4><span><i class="fa fa-object-group"></i></span> LOGO DESIGN</h4>
-                                                    </div>
-                                                </div>
-                                                <div class="single_othersservice_content">
-
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
+                                        @endif
+                                        
 
                                     </div>
                                 </div> 
@@ -386,7 +295,7 @@
 
 
 
-            <section id="maps" class="maps">
+            <!-- <section id="maps" class="maps">
                 <div class="map-overlay">
                     <div class="container-fluid">
                         <div class="row">
@@ -402,7 +311,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
 
 
