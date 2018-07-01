@@ -9,6 +9,7 @@ use App\Program;
 use App\Project;
 use App\Donation;
 use App\Usulan;
+use App\ProgramDocumentation;
 use App\UserMessage;
 
 class SystemController extends Controller
@@ -94,6 +95,9 @@ class SystemController extends Controller
 
     public function beranda(){
         $programs = Program::where('flag_active',1)->get();
+        foreach($programs as $program){
+            $program['image'] = ProgramDocumentation::where('id_program',$program->id)->orderBy('id','desc')->first();
+        }
         $project_pilihan = Project::where('is_project_pilihan',1)->first();
         $projects = Project::where('is_publish', 1)->where('is_close',0)->where('date_close', '>=', Carbon::now())->take(6)->get();
         return view('user.beranda')->with('programs',$programs)->with('project_pilihan',$project_pilihan)->with('projects',$projects);

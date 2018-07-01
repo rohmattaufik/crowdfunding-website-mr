@@ -67,7 +67,7 @@
                                             <h1>SELAMAT DATANG DI MADRASAH RELAWAN</h1>
                                             <p>#MariBerjuang</p>
                                             <div class="home_btn">
-                                                <a href="" class="btn btn-primary">LEARN MORE</a>
+                                                <a href="{{url('tentang-mr')}}" class="btn btn-primary">LEARN MORE</a>
                                             </div>
 
                                         </div>
@@ -77,7 +77,7 @@
                                             <h1>WELCOME TO OUR LOGIC</h1>
                                             <p>We Make Awesome Theme For Your Business</p>
                                             <div class="home_btn">
-                                                <a href="" class="btn btn-primary">LEARN MORE</a>
+                                                <a href="{{url('tentang-mr')}}" class="btn btn-primary">LEARN MORE</a>
                                             </div>
 
                                         </div>
@@ -87,7 +87,7 @@
                                             <h1>WELCOME TO OUR LOGIC</h1>
                                             <p>We Make Awesome Theme For Your Business</p>
                                             <div class="home_btn">
-                                                <a href="" class="btn btn-primary">LEARN MORE</a>
+                                                <a href="{{url('tentang-mr')}}" class="btn btn-primary">LEARN MORE</a>
                                             </div>
 
                                         </div>
@@ -130,7 +130,7 @@
                                                     <div class="skillbar-title"><p class="blue"><strong>Progress</strong></p><span class="sm-text">{{ number_format((float)$project_pilihan->dana_terkumpul/$project_pilihan->target_dana*100 , 2, '.', '') }} %</span></div>
                                                     <div class="skillbar-bar blue"></div>
                                                 </div>
-                                                <a href="" class="btn">Lihat Project</a>
+                                                <a href="{{url('view_project/'.$project_pilihan->id)}}" class="btn">Lihat Project</a>
                                             </div>
                                         </div>
                                     </div>
@@ -143,59 +143,60 @@
             <hr>
             <section id="service" class="service" style="padding-bottom:5em;">
                 <div class="container">
-                            <div class="row">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="single_tab_content">
+                                <div class="head_title" style="padding-top:3em;">
+                                    <h3>Project LAINNYA</h3>
+                                    <div class="separator"></div>
+                                </div>
+                                            
+                                <div>
                                     <div class="col-sm-12">
-                                        <div class="single_tab_content">
-                                            <div class="head_title" style="padding-top:3em;">
-                                                <h3>Project LAINNYA</h3>
-                                                <div class="separator"></div>
-                                            </div>
-                                            
-                                            <div>
-                                            
-                                            <div class="col-sm-12">
-                                            @if(count($projects) >0 )
-                                                @foreach($projects as $project)
-                                                <div class="col-sm-4">
-                                                    <div class="thumbnail">
-                                                        <img src="{{URL::asset($project->image)}}" alt="...">
-                                                        <div class="caption">
-                                                            <h3>{{$project->title}}</h3>
-                                                            <div class="col-sm-12 col-md-12">
-                                                                <div class="col-sm-6">
-                                                                    <p>Target dana : </p>
-                                                                </div>
+                                        @if(count($projects) >0 )
+                                            @foreach($projects as $project)
+                                            <div class="col-sm-4">
+                                                <div class="thumbnail">
+                                                    <img src="{{URL::asset($project->image)}}" alt="...">
+                                                    <div class="caption">
+                                                        <h3>{{$project->title}}</h3>
+                                                        <div class="col-sm-12 col-md-12">
+                                                            <div class="col-sm-6">
+                                                                <p>Target dana : </p>
+                                                            </div>
                                                             <div class="col-sm-6 pull-right">
                                                                 <p>Rp {{ number_format($project->target_dana,2,',','.')}}</p>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-12 col-md-12 pull-right" style="border-bottom: 1px solid grey;">
-                                                            <div class="col-sm-6">
-                                                                    <p>Dibuka hingga : </p>
-                                                            </div>
-                                                            <div class="col-sm-6 pull-right">
-                                                                    <p>{{$project->date_close}}</p>
-                                                            </div>
-                                                        </div>
-                                                        <p>{!! html_entity_decode(substr($project->deskripsi, 0, 500)) !!}</p>
-                                                        <div class="skillbar" data-percent="{{($project->dana_terkumpul/$project->target_dana)*100}}%">
-                                                            <div class="skillbar-title"><p class="blue"><strong>Progress</strong></p><span class="sm-text">{{ number_format((float)$project->dana_terkumpul/$project->target_dana*100 , 2, '.', '') }} %</span></div>
-                                                            <div class="skillbar-bar blue"></div>
-                                                        </div>
-                                                        <p><a href="{{url('view_project/'.$project->id)}}" class="btn btn-default" role="button">Lihat Project</a></p>
                                                     </div>
+                                                    <div class="col-sm-12 col-md-12 pull-right" style="border-bottom: 1px solid grey;">
+                                                        <div class="col-sm-6">
+                                                                <p>Dibuka hingga : </p>
+                                                        </div>
+                                                        <div class="col-sm-6 pull-right">
+                                                                <p>{{$project->date_close}}</p>
+                                                        </div>
                                                     </div>
-                                                @endforeach
-                                                @else
-                                                Belum ada project
-                                                @endif
-                                        
+                                                    <p>{!! html_entity_decode(substr($project->deskripsi, 0, 500)) !!}</p>
+                                                    <div class="skillbar" data-percent="{{($project->dana_terkumpul/$project->target_dana)*100}}%">
+                                                        <div class="skillbar-title"><p class="blue"><strong>Progress</strong></p><span class="sm-text">{{ number_format((float)$project->dana_terkumpul/$project->target_dana*100 , 2, '.', '') }} %</span></div>
+                                                        <div class="skillbar-bar blue"></div>
+                                                    </div>
+                                                    <p><a href="{{url('view_project/'.$project->id)}}" class="btn btn-default" role="button">Lihat Project</a></p>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        @else
+                                            Belum ada project
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="pull-right">
-                                    <a href="" class="btn" style="background:white;color:black;">Lihat Semua Proyek</a>
-                                </div>
-                    
+                            </div>
+                            <div class="pull-right">
+                                <a href="" class="btn" style="background:white;color:black;">Lihat Semua Proyek</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <hr>
@@ -214,6 +215,11 @@
                                         @if(count($programs) > 0)
                                         @foreach($programs as $program)
                                         <div class="col-sm-4">
+                                            @if($program['image'] != null)
+                                            <img src="{{URL::asset($program['image']->dokumentation_url)}}" alt="...">
+                                            @else
+                                            <img src="{{URL::asset('image/madrasah_relawan.jpg')}}" alt="...">
+                                            @endif
                                             <div class="single_othersservice">
                                                 <div class="single_othersservice_icon">
                                                     <h4><span><i class="fa fa-television"></i></span> {{$program->name}}</h4>

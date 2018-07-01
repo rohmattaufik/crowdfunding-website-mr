@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserMessage;
+use Session;
 
 class UserMessageController extends Controller
 {
@@ -35,6 +36,7 @@ class UserMessageController extends Controller
         $subject = $request->subject;
         $pesan = $request->message;
         if($first_name == "" or $email=="" or $subject=="" or $pesan==""){
+            Session::flash('failed','Kami gagal mengirimkan pesan anda. Mungkin karena ada form yang belum anda isi.');
             return redirect()->back();
         }
         $user_message = new UserMessage;
@@ -45,6 +47,7 @@ class UserMessageController extends Controller
         $user_message->pesan = $pesan;
         $user_message->is_read = 0;
         $user_message->save();
+        Session::flash('success','Terima kasih. Pesan Anda berhasil kami kirim kepada pengurus Madrasah Relawan.');
         return redirect()->back();
     }
 }

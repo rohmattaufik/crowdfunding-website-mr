@@ -65,6 +65,30 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12">
+                            @if(Session::get('success') != null)
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <hr/>
+                                        <div class="alert alert-success alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
+                                            {{ Session::get('success') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            @if(Session::get('failed') != null)
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <hr/>
+                                        <div class="alert alert-danger alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            <h4><i class="icon fa fa-check"></i> Gagal!</h4>
+                                            {{ Session::get('failed') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                                 <div class="row">
                                     <div class="contact_contant sections">
                                         <div class="col-sm-6">

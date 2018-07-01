@@ -66,6 +66,18 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="row">
+                                @if(Session::get('failed') != null)
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <hr/>
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <h4><i class="icon fa fa-check"></i> Gagal!</h4>
+                                                {{ Session::get('failed') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                                     <div class="contact_contant sections">
                                         <div class="col-sm-12">
                                             <div class="head_title">
@@ -128,7 +140,7 @@
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label for="tanggal">Tanggal</label>
-                                                            <input type="text" class="form-control" name="tanggal" id="tanggal">
+                                                            <input type="text" class="form-control" id="datepicker" name="tanggal" id="tanggal">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">

@@ -30,7 +30,7 @@ class RekeningDonasi extends Mailable
      */
     public function build()
     {
-        return $this->from('rohmat.taufik14@gmail.com')
+        return $this->from('noreplymadrasahrelawan@gmail.com')
                     ->view('mails.demo')
                     ->text('mails.demo_plain')
                     ->with(

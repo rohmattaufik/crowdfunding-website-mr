@@ -4,7 +4,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{URL::asset('AdminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          <img src="{{URL::asset('image/user.png')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{Auth::user()->name}}</p>
@@ -30,7 +30,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{url('admin/program')}}"><i class="fa fa-circle-o"></i> Lihat</a></li>
-            <li><a href="{{url('admin/program/create')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
+            <li><a href="{{url('admin/create/program')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
           </ul>
         </li>
         <li class="treeview">

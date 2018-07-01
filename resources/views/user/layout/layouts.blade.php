@@ -19,11 +19,10 @@
     <link rel="stylesheet" href="{{URL::asset('LogicFree/assets/fonts/stylesheet.css')}}">
     <link rel="stylesheet" href="{{URL::asset('LogicFree/assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{URL::asset('LogicFree/assets/css/jquery.fancybox.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('LogicFree/assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('LogicFree/assets/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{URL::asset('LogicFree/assets/css/magnific-popup.css')}}">
     <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
-
-
+    
     <!--For Plugins external css-->
     <link rel="stylesheet" href="{{URL::asset('LogicFree/assets/css/plugins.css')}}" />
 
@@ -32,6 +31,10 @@
 
     <!--Theme Responsive css-->
     <link rel="stylesheet" href="{{URL::asset('LogicFree/assets/css/responsive.css')}}" />
+
+    
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{URL::asset('AdminLTE/plugins/datepicker/datepicker3.css')}}">
 
     <script src="{{URL::asset('LogicFree/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
 </head>
@@ -77,7 +80,16 @@
 
         <script src="{{URL::asset('LogicFree/assets/js/plugins.js')}}"></script>
         <script src="{{URL::asset('LogicFree/assets/js/main.js')}}"></script>
-
+        
+        <!-- datepicker -->
+        <script src="{{URL::asset('AdminLTE/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+        <script>
+            $('#datepicker').datepicker({
+                format : 'yyyy-mm-dd'
+            });
+        </script>
+        
+        
 
 </body>
 

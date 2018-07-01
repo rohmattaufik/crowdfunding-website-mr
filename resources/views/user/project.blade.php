@@ -91,8 +91,13 @@
                                                 </form>
                                                 </div>
                                                 <div>
-                                                <div class="col-sm-12" style="padding-bottom:3em;">        
-                                                    <h3>PROJECT PADA PROGRAM A</h3>
+                                                <div class="col-sm-12" style="padding-bottom:3em;">
+                                                        @foreach($programs as $program)
+                                                            @if(count($projects) >0 and $program->id == $id_program)
+                                                            <h3>PROJECT PADA PROGRAM {{$program->name}}</h3>
+                                                            @endif
+                                                        @endforeach        
+                                                    
                                                     <hr>
                                                 </div>
                                                 <div class="col-sm-12">

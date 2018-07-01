@@ -73,7 +73,14 @@
                 @foreach($questions as $key => $question)
                 <tr>
                     <td>{{++$key}}</td>
-                    <td width="70%"><strong>Tipe Jawaban : {{$question->answer_type}}</strong> 
+                    <td width="70%"><strong>Tipe Jawaban : 
+                    @if($question->answer_type == 1)
+                    Text
+                    @elseif($question->answer_type == 2)
+                    Text Panjang
+                    @else
+                    Option
+                    @endif</strong> 
                           <br> {!! html_entity_decode($question->question) !!}</td>
                     <td>
                     <a href="{{url('admin/recrutment/question/'.$question->id.'/edit')}}" class="btn btn-warning" data-toggle="tooltip"

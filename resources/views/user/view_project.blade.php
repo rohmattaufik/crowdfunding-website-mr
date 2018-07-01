@@ -61,6 +61,18 @@
             <section id="features" class="features">
                 <div class="container">
                     <div class="row">
+                    @if(Session::get('success') != null)
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <hr/>
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
+                                    {{ Session::get('success') }}
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                         <div class="col-sm-12">
                             <div class="main_features_area sections">
                                 <div class="head_title">
@@ -108,6 +120,41 @@
                                     </div>
                                 </div> 
                             </div>
+                        </div>
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <h4>Daftar Pendonor</h4>
+                            <div class="bs-example" data-example-id="bordered-table">
+                                <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Jumlah</th>
+                                    <th>Tanggal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if(count($pendonasi)>0)
+                                    @foreach($pendonasi as $key => $donatur)
+                                    <tr>
+                                    <th>{{$key+1}}</th>
+                                    @if($donatur->is_anonim == 1)
+                                    <td>Hamba Allah</td>
+                                    @else
+                                    <td>{{$donatur->nama}}</td>
+                                    @endif
+                                    <td>{{$donatur->jumlah}}</td>
+                                    <td>{{$donatur->tanggal_transfer}}</td>
+                                    </tr>
+                                    @endforeach
+                                    @else
+                                    <tr>
+                                    Belum ada pendonor
+                                    </tr>
+                                    @endif
+                                </tbody>
+                                </table>
+                            </div><!-- /example -->
                         </div>
                     </div>
                 </div>

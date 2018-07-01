@@ -137,6 +137,18 @@ class RecrutmentController extends Controller
         $recrutment_question->question = $question;
         $recrutment_question->answer_type = $answer_type;
         $recrutment_question->save();
+
+        if($answer_type==3){
+            $options = $request->option;
+            foreach ($options as $key => $value) {
+                if($value != "" or $value != null){
+                    $option1 = new RecrutmentQuestionOption;
+                    $option1->id_recrutment_question = $recrutment_question->id;
+                    $option1->option_text = $value;
+                    $option1->save();
+                }
+            }
+        }
         return redirect('admin/recrutment/term/'.$recrutment_term);
     }
 
@@ -144,6 +156,9 @@ class RecrutmentController extends Controller
         $recrutment_question = RecrutmentQuestion::find($id_recrutment_question);
         if($recrutment_question == null){
             return redirect()->back();
+        }
+        if($recrutment_question->answer_type == 3){
+            $recrutment_question['options'] = RecrutmentQuestionOption::where('id_recrutment_question',$id_recrutment_question)->get();
         }
         $messages = UserMessage::where('is_read',0)->orderBy('id','desc')->get();
         return view('admin.recrutment.question.edit')->with('recrutment_question', $recrutment_question)->with('messages',$messages);
@@ -164,6 +179,18 @@ class RecrutmentController extends Controller
         $recrutment_question->question = $question;
         $recrutment_question->answer_type = $answer_type;
         $recrutment_question->save();
+        if($answer_type==3){
+            DB::table('recrutment_question_options')->where('id_recrutment_question','=',$request->id_question)->delete();
+            $options = $request->option;
+            foreach ($options as $key => $value) {
+                if($value != "" or $value != null){
+                    $option1 = new RecrutmentQuestionOption;
+                    $option1->id_recrutment_question = $recrutment_question->id;
+                    $option1->option_text = $value;
+                    $option1->save();
+                }
+            }
+        }
         return redirect('admin/recrutment/term/'.$recrutment_question->id_recrutment_term);
     }
 

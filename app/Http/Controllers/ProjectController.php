@@ -8,6 +8,7 @@ use App\Program;
 use Carbon\Carbon;
 use App\Donation;
 use App\UserMessage;
+use Session;
 
 use App\Http\Controllers\Controller;
 use App\Mail\DemoEmail;
@@ -21,6 +22,26 @@ class ProjectController extends Controller
     //          ADMIN AREA
     // --------------------------------
 
+    public function publish_project($id_project){
+        $project = Project::find($id_project);
+        if($project== null){
+            return redirect()->back();
+        }
+        $project->is_publish = 1;
+        $project->save();
+        return redirect()->back();
+    }
+
+    public function unpublish_project($id_project){
+        $project = Project::find($id_project);
+        if($project== null){
+            return redirect()->back();
+        }
+        $project->is_publish = 0;
+        $project->save();
+        return redirect()->back();
+    }
+    
     public function viewall_project(){
         $projects = Project::all();
         foreach($projects as $project){
@@ -158,7 +179,8 @@ class ProjectController extends Controller
         if($project == null or $project->is_publish == 0){
             return redirect()->back();
         }
-        return view('user.view_project')->with('project',$project);
+        $pendonasi = Donation::where('id_project',$project_id)->where('is_confirmation',1)->get();
+        return view('user.view_project')->with('project',$project)->with('pendonasi',$pendonasi);
     }
 
     public function donasi (Request $request) {
@@ -232,6 +254,7 @@ class ProjectController extends Controller
         if($id_donasi == null){
             $donasi = Donation::where('id_project',$id_project)->where('email',$email)->where('jumlah',$jumlah)->where('is_confirmation',0)->get();
             if($donasi == null or count($donasi)>1){
+                Session::flash('failed','Kami gagal menyimpan konfirmasi anda. Mungkin data yang anda masukkan tidak tepat.');
                 return redirect()->back();
             }
             $donasi = $donasi[0];
@@ -246,10 +269,12 @@ class ProjectController extends Controller
             $project = Project::find($id_project);
             $project->dana_terkumpul += $jumlah;
             $project->save();
+            Session::flash('success','Terima kasih. Konfirmasi anda telah kami rekam. Bantuan anda akan kami salurkan.');
             return redirect('/view_project/'.$donasi->id_project);
         }else{
             $donasi = Donation::find($id_donasi);
             if($donasi == null or $donasi->is_confirmation == 1){
+                Session::flash('failed','Kami gagal menyimpan konfirmasi anda. Mungkin data yang anda masukkan tidak tepat.');
                 return redirect()->back();
             }
             $donasi->bank_asal = $bank_asal;
@@ -263,6 +288,7 @@ class ProjectController extends Controller
             $project = Project::find($id_project);
             $project->dana_terkumpul += $jumlah;
             $project->save();
+            Session::flash('success','Terima kasih. Konfirmasi anda telah kami rekam. Bantuan anda akan kami salurkan.');
             return redirect('/view_project/'.$donasi->id_project);
         }
     }

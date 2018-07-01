@@ -118,6 +118,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('admin/project/pendonasi/{id}','ProjectController@lihat_pendonasi');
 
+    Route::get('admin/project/publish/{id}','ProjectController@publish_project');
+
+    Route::get('admin/project/unpublish/{id}','ProjectController@unpublish_project');
+
 
 
     Route::get('admin/usulan_penerima_manfaat','UsulanController@lihat_usulan');

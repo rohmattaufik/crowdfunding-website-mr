@@ -12,7 +12,7 @@ Author URI: http://www.bootstrapthemes.co
     }
 
     .service .nav-tabs>li>a{
-        width:195px;
+        width:100px;
         font-size: 95%;
     }   
     .service_tabe_menu.nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
@@ -35,6 +35,7 @@ Author URI: http://www.bootstrapthemes.co
         width: 140px;
         line-height: 50px;
     }
+   
 
 }
 
